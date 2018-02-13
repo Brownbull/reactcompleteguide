@@ -20,7 +20,8 @@ module.exports = {
             "error", 
             { 
                 // "vars": "all", 
-                "varsIgnorePattern": "[rR]eact", 
+                "varsIgnorePattern": "^", 
+                // "varsIgnorePattern": "^", 
                 "args": "after-used", 
                 "ignoreRestSiblings": false 
             }
@@ -35,7 +36,7 @@ module.exports = {
         ],
         "quotes": [
             "error",
-            "single"
+            "double"
         ],
         "semi": [
             "error",
