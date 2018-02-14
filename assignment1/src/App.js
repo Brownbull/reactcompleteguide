@@ -15,13 +15,13 @@ class App extends Component {
 
 
   render() {
-    let initialName = this.state.username.value
     return (
       <div className="App">
-        <UserInput change={this.nameChangeHandler}/>
+        <UserInput 
+          change={this.nameChangeHandler}
+          initialUserName={this.state.username}/>
         <UserOutput 
-          username={this.state.username}
-          initialUserName={initialName} />
+          username={this.state.username}/>
       </div>
     ) // eof return
   } // eof render() 
