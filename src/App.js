@@ -54,7 +54,15 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div >
-          <Person
+          {this.state.persons.map((person, key) => {
+            return (
+              <Person
+                key={key}
+                name={person.name}
+                age={person.age}></Person>
+            ) // eof return
+          })}
+          {/* <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}>My hobbies: studying</Person>
           <Person
@@ -64,7 +72,7 @@ class App extends Component {
             change={this.nameChangeHandler}>Hobbies: Cooking</Person>
           <Person
             name={this.state.persons[2].name}
-            age={this.state.persons[2].age}></Person>
+            age={this.state.persons[2].age}></Person> */}
         </div>
       )
     } // eof if (this.state.showPersons) 
@@ -73,7 +81,7 @@ class App extends Component {
       <div className="App">
         <button 
           style={style}
-          onClick={this.togglePersonHandler}>Switch Name</button>
+          onClick={this.togglePersonHandler}>Toggle Persons</button>
         {/* <button onClick={() => this.switchNameHandler("Gabo1")}>Switch Name</button> */}
         {persons}
       </div>
