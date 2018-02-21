@@ -5,9 +5,9 @@ import Person from "./components/Person/scenes/Person"
 class App extends Component {
   state = {
     persons: [
-      {name: "Gabriel", age:28},
-      {name: "Claudia", age:39},
-      {name: "Lia", age:25},
+      { id: "1", name: "Gabriel", age: 28 },
+      { id: "2", name: "Claudia", age: 39 },
+      { id: "3", name: "Lia", age: 26 },
     ],
     otherState: "some other value",
     showPersons: false
@@ -17,9 +17,9 @@ class App extends Component {
     // don't do this this.state.persons.name[0].name = "Gabo"
     this.setState({
       persons: [
-        { name: newName, age: 28 },
-        { name: "Claudia", age: 39 },
-        { name: "Lia", age: 26 },
+        { id: "1", name: newName, age: 28 },
+        { id: "2", name: "Claudia", age: 39 },
+        { id: "3", name: "Lia", age: 26 },
       ]
     }) // eof this.setState
   } // eof switchNameHandler
@@ -34,6 +34,13 @@ class App extends Component {
     }) // eof this.setState
   } // eof nameChangeHandler
   
+  deletePersonHandler = (personIndex) => {
+    //const persons = this.state.persons.slice() // slice will create a copy instead of use the reference method
+    const persons = [...this.state.persons] //this will copy instead of reference persons on state
+    persons.splice(personIndex, 1)  // this will delete element
+    this.setState({persons: persons})
+  } // eof deletePersonHandler
+
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons
     this.setState({showPersons: !doesShow})
@@ -57,7 +64,8 @@ class App extends Component {
           {this.state.persons.map((person, key) => {
             return (
               <Person
-                key={key}
+                key={person.id}
+                click={() => this.deletePersonHandler(key)}
                 name={person.name}
                 age={person.age}></Person>
             ) // eof return
