@@ -24,14 +24,18 @@ class App extends Component {
     }) // eof this.setState
   } // eof switchNameHandler
 
-  nameChangeHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: "Gabriel", age: 28 },
-        { name: event.target.value, age: 39 },
-        { name: "Lia", age: 26 },
-      ]
-    }) // eof this.setState
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => { // get indexc of person to change on state
+      return (
+        p.id === id
+      )
+    })
+    const person = {...this.state.persons[personIndex]} // get that person on a local variable as a copy not a reference
+    person.name = event.target.value  // change person name on copied var
+    const persons = [...this.state.persons] // copy all persons 
+    persons[personIndex] = person // chage specific person on copied array of persons
+
+    this.setState({ persons: persons }) // make effective change on state
   } // eof nameChangeHandler
 
   deletePersonHandler = (personIndex) => {
@@ -67,7 +71,9 @@ class App extends Component {
                 key={person.id}
                 click={() => this.deletePersonHandler(key)}
                 name={person.name}
-                age={person.age}></Person>
+                age={person.age}
+                change={(event) => this.nameChangeHandler(event, person.id)}>
+              </Person>
             ) // eof return
           })}
           {/* <Person
