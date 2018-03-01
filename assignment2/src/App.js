@@ -13,13 +13,14 @@ class App extends Component {
   } // eof getLength
 
   deleteCharHandler = (charIndex) => {
-    const word = [...this.state.userInput].splice('')
+    const word = this.state.userInput.split('')
     word.splice(charIndex, 1)
-    this.setState({userInput: word.join('')})
+    const updtWord = word.join('')
+    this.setState({ userInput: updtWord})
   } // eof deleteCharHandler
 
   render() {
-    let charList = this.state.userInput.split('').map((letter, key) => { // split will turn object on array
+    const charList = this.state.userInput.split('').map((letter, key) => { // split will turn object on array
       return (
         <Char 
           key={key}
@@ -33,9 +34,9 @@ class App extends Component {
         <input 
           type="text" 
           onChange={this.inputChangeHandler} 
-          defaultValue={this.state.userInput}/>
+          value={this.state.userInput}/>
         <p>{this.state.userInput}</p>
-        <Validation inputLength={this.state.userInput.length} word={this.state.userInput}/>
+        <Validation inputLength={this.state.userInput.length} />
         {charList}
       </div>
     );
