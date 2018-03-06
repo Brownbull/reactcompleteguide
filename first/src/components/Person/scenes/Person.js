@@ -1,5 +1,6 @@
 import React from "react"
 import "./Person.css"
+import Radium from "radium"
 
 const Person = (props) => {
   return (
@@ -13,4 +14,4 @@ const Person = (props) => {
   ) //eof return
 } // eof const Person 
 
-export default Person
+export default Radium(Person)
