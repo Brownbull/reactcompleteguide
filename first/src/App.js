@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./App.css"
 import Person from "./components/Person/scenes/Person"
-import Radium from "radium"
+import Radium, { StyleRoot } from "radium"
 
 class App extends Component {
   state = {
@@ -94,7 +94,7 @@ class App extends Component {
             name={this.state.persons[2].name}
             age={this.state.persons[2].age}></Person> */}
         </div>
-      )
+      ) // eof persons
       style.backgroundColor = "red" // on click button change to this
       style[":hover"] = {
         backgroundColor: "lightred",
@@ -113,14 +113,16 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <p className={classes.join(" ")}>It's Working!</p>
-        <button
-          style={style}
-          onClick={this.togglePersonHandler}>Toggle Persons</button>
-        {/* <button onClick={() => this.switchNameHandler("Gabo1")}>Switch Name</button> */}
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <p className={classes.join(" ")}>It's Working!</p>
+          <button
+            style={style}
+            onClick={this.togglePersonHandler}>Toggle Persons</button>
+          {/* <button onClick={() => this.switchNameHandler("Gabo1")}>Switch Name</button> */}
+          {persons}
+        </div>
+      </StyleRoot>
     ) // eof return
   } // eof render()
 } // eof class App extends Component
